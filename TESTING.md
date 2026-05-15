@@ -75,6 +75,36 @@ To stop a service, press `Ctrl+C` in its terminal.
 
 ---
 
+## Stopping the Services
+
+**If you still have the terminals open:** Press `Ctrl+C` in each terminal window. The service will shut down immediately.
+
+**If you lost the terminals (or Ctrl+C didn't work):**
+
+### Windows (PowerShell)
+
+Find the process IDs using the port numbers, then kill them:
+
+```powershell
+netstat -ano | findstr ":9090 "
+netstat -ano | findstr ":9091 "
+```
+
+The last column is the PID. Kill each one:
+
+```powershell
+taskkill /PID <pid> /F
+```
+
+### Mac / Linux
+
+```bash
+lsof -ti :9090 | xargs kill -9
+lsof -ti :9091 | xargs kill -9
+```
+
+---
+
 ## Step 2 — Install Bruno
 
 Choose one:
